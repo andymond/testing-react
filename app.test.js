@@ -36,4 +36,13 @@ describe('App', () => {
     wrapper = mount(<App />)
     expect(wrapper.state().toDonts).toEqual(toDonts)
   })
+
+  it('should add ToDont to to dont list', () => {
+    const toDont = {title: 'eat mice', body: 'its mean and gross', id: 3}
+    const inst = wrapper.instance()
+    inst.addToDont(toDont)
+
+
+    expect(wrapper.state().toDonts[0]).toEqual(toDont)
+  })
 })
