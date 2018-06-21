@@ -38,11 +38,30 @@ describe('App', () => {
   })
 
   it('should add ToDont to to dont list', () => {
+    expect(wrapper.state().toDonts.length).toEqual(0)
+
     const toDont = {title: 'eat mice', body: 'its mean and gross', id: 3}
     const inst = wrapper.instance()
     inst.addToDont(toDont)
+    const itemsInStorage = JSON.parse(localStorage.getItem('toDonts')).length
 
 
     expect(wrapper.state().toDonts[0]).toEqual(toDont)
+    expect(wrapper.state().toDonts.length).toEqual(itemsInStorage)
+  })
+
+  it('should update local storage', () => {
+    expect(localStorage).toEqual(expect.objectContaining({}))
+
+    const toDonts = [
+      {title: "title", body: "body", id: 1},
+      {title: "title", body: "body", id: 2}
+    ]
+
+    wrapper.setState({ toDonts })
+    const inst = wrapper.instance()
+    inst.updateLocalStorage()
+
+    expect(JSON.parse(localStorage.store.toDonts).length).toEqual(2)
   })
 })
