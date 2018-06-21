@@ -64,4 +64,21 @@ describe('App', () => {
 
     expect(JSON.parse(localStorage.store.toDonts).length).toEqual(2)
   })
+
+  it('should update card', () => {
+    expect(localStorage).toEqual(expect.objectContaining({}))
+
+    const toDonts = [
+      {title: "title", body: "body", id: 1},
+      {title: "title", body: "body", id: 2}
+    ]
+
+    wrapper.setState({ toDonts })
+    const inst = wrapper.instance()
+    const updated = {title: "title2", body: "body2", id: 1}
+    inst.updateCard(updated)
+
+    expect(wrapper.state().toDonts[0]).toEqual(updated)
+    expect(JSON.parse(localStorage.store.toDonts).length).toEqual(2)
+  })
 })
