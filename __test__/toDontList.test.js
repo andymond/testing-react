@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ToDontList from './lib/components/ToDontList'
+import ToDontList from '../lib/components/ToDontList'
 
 describe('toDontList component', () => {
   let wrapper;
