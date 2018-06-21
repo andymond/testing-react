@@ -81,4 +81,20 @@ describe('App', () => {
     expect(wrapper.state().toDonts[0]).toEqual(updated)
     expect(JSON.parse(localStorage.store.toDonts).length).toEqual(2)
   })
+
+  it('should delete card', () => {
+    const toDonts = [
+      {title: "title", body: "body", id: 1},
+      {title: "title", body: "body", id: 2}
+    ]
+
+    wrapper.setState({ toDonts })
+    const inst = wrapper.instance()
+    const dumbCard = {title: "title", body: "body", id: 1}
+    inst.deleteCard(dumbCard)
+
+    expect(wrapper.state().toDonts.length).toEqual(1)
+    expect(wrapper.state().toDonts[0]).toEqual({title: "title", body: "body", id: 2})
+    expect(JSON.parse(localStorage.store.toDonts).length).toEqual(1)
+  })
 })
